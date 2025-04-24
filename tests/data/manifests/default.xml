@@ -14,6 +14,7 @@
     <project name="charlie" path="src/charlie" upstream="feature"/>
     <project name="delta" path="src/delta" revision="develop" remote="custom"/>
     <project name="echo" path="src/echo" remote="origin" revision="main"/>
+    <project name="echo" path="src/echo" remote="origin" revision="sub"/>
 
     <!-- ====== SUBMANIFESTS ====== -->
     <submanifest name="subA" path="vendor/subA" manifest-name="subA.xml"/>

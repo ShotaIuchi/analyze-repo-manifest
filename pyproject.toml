@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "analyze-repo-manifest"
+version = "0.1.0"
+description = "A tool to analyze and manipulate Android repo manifest XML files."
+readme = "README.md"
+requires-python = ">=3.7"
+license = "MIT"
+authors = [{ name = "Shota Iuchi", email = "shotaiuchi.develop@gmail.com" }]
+keywords = ["repo", "manifest", "aosp", "android", "xml"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = []
+
+[project.urls]
+"Homepage" = "https://github.com/ShotaIuchi/analyze-repo-manifest"
+"Bug Tracker" = "https://github.com/ShotaIuchi/analyze-repo-manifest/issues"
+
+[project.scripts]
+analyze-repo-manifest = "analyze_repo_manifest.cli:main"

@@ -1,9 +1,72 @@
-from analyze_repo_manifest.parse import parse_manifest
+from .args import parse_args
+from .parse import parse_manifest
+from .search import (
+    filter_projects,
+    filter_remotes,
+    filter_submanifests,
+)
 
 
 def main():
-    import os
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    manifest = parse_manifest(os.path.join(current_dir, os.path.pardir, "tests", "data", "manifests", "default.xml"))
-    for remote in manifest.remotes:
-        print(f"Remote name: {remote.name}, fetch: {remote.fetch}")
+    args = parse_args()
+    manifest = parse_manifest(args.manifest)
+
+    if args.command == "project":
+        results = filter_projects(
+            manifest,
+            name=args.name,
+            path=args.path,
+            revision=args.revision,
+            remote=args.remote,
+            groups=args.groups,
+        )
+        print_selected_fields(results, args.fields)
+
+    elif args.command == "remote":
+        results = filter_remotes(
+            manifest,
+            name=args.name,
+            alias=args.alias,
+            fetch=args.fetch,
+            pushurl=args.pushurl,
+            review=args.review,
+            revision=args.revision,
+        )
+        print_selected_fields(results, args.fields)
+
+    elif args.command == "submanifest":
+        results = filter_submanifests(
+            manifest,
+            name=args.name,
+            project=args.project,
+            path=args.path,
+            revision=args.revision,
+            groups=args.groups,
+        )
+        print_selected_fields(results, args.fields)
+
+    else:
+        print("Invalid command or missing arguments. Use --help for more information.")
+
+
+def print_selected_fields(obj_list, fields: str):
+    if not obj_list:
+        return
+
+    if not fields:
+        fields = ",".join(obj_list[0].__dataclass_fields__.keys())
+
+    field_list = fields.split(",")
+
+    for obj in obj_list:
+        values = []
+        for f in field_list:
+            value = getattr(obj, f, None)
+            if value is not None:
+                values.append(f"{f}={value}")
+        if values:
+            print(", ".join(values))
+
+
+if __name__ == "__main__":
+    main()

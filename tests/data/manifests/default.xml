@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <!-- ====== REMOTES ====== -->
+    <remote name="origin" fetch="https://example.com/git"/>
+    <remote name="custom" fetch="https://git.example.com"/>
+    <default revision="main" remote="origin"/>
+
+    <!-- ====== PROJECTS ====== -->
+    <project name="alpha" path="src/alpha" revision="dev">
+        <annotation name="maintainer" value="alice"/>
+    </project>
+    <project name="beta" path="src/beta"/>
+    <project name="bravo" path="src/bravo" remote="github" revision="main" upstream="dev"/>
+    <project name="charlie" path="src/charlie" upstream="feature"/>
+    <project name="delta" path="src/delta" revision="develop" remote="custom"/>
+    <project name="echo" path="src/echo" remote="origin" revision="main"/>
+
+    <!-- ====== SUBMANIFESTS ====== -->
+    <submanifest name="subA" path="vendor/subA" manifest-name="subA.xml"/>
+    <submanifest name="subB" path="vendor/subB" manifest-name="subB.xml" revision="main-dev"/>
+    <submanifest name="subC" path="vendor/subC" manifest-name="subC.xml" revision="dev" />
+    <submanifest name="subD" path="vendor/subD" manifest-name="subD.xml" groups="notdefault" />
+</manifest>

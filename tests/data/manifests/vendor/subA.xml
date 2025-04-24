@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <project name="subA/component1" path="component1"/>
+  <project name="subA/component2" path="component2" revision="sub-main"/>
+</manifest>

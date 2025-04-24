@@ -23,3 +23,7 @@ dependencies = []
 
 [project.scripts]
 analyze-repo-manifest = "analyze_repo_manifest.cli:main"
+
+[tool.setuptools]
+# pip install -e .
+packages = ["analyze_repo_manifest"]

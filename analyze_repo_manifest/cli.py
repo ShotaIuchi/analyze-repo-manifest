@@ -1,3 +1,4 @@
+from analyze_repo_manifest.display import get_display_function
 from .args import parse_args
 from .parse import parse_manifest
 from .search import (
@@ -42,26 +43,8 @@ def main():
             groups=args.groups,
         )
 
-    print_selected_fields(results, args.fields)
-
-
-def print_selected_fields(obj_list, fields: str):
-    if not obj_list:
-        return
-
-    if not fields:
-        fields = ",".join(obj_list[0].__dataclass_fields__.keys())
-
-    field_list = fields.split(",")
-
-    for obj in obj_list:
-        values = []
-        for f in field_list:
-            value = getattr(obj, f, None)
-            if value is not None:
-                values.append(f"{f}={value}")
-        if values:
-            print(", ".join(values))
+    display_func = get_display_function(args.display)
+    display_func(results, args.fields)
 
 
 if __name__ == "__main__":

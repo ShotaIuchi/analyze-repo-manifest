@@ -24,6 +24,12 @@ dependencies = []
 [project.scripts]
 analyze-repo-manifest = "analyze_repo_manifest.cli:main"
 
-[tool.setuptools]
+# plugin - display
+[project.entry-points."analyze_repo_manifest.display"]
+default = "analyze_repo_manifest.display.display_default:display"
+json = "analyze_repo_manifest.display.display_json:display"
+yaml = "analyze_repo_manifest.display.display_yaml:display"
+
 # pip install -e .
+[tool.setuptools]
 packages = ["analyze_repo_manifest"]

@@ -20,7 +20,6 @@ def main():
             remote=args.remote,
             groups=args.groups,
         )
-        print_selected_fields(results, args.fields)
 
     elif args.command == "remote":
         results = filter_remotes(
@@ -32,7 +31,6 @@ def main():
             review=args.review,
             revision=args.revision,
         )
-        print_selected_fields(results, args.fields)
 
     elif args.command == "submanifest":
         results = filter_submanifests(
@@ -43,10 +41,8 @@ def main():
             revision=args.revision,
             groups=args.groups,
         )
-        print_selected_fields(results, args.fields)
 
-    else:
-        print("Invalid command or missing arguments. Use --help for more information.")
+    print_selected_fields(results, args.fields)
 
 
 def print_selected_fields(obj_list, fields: str):

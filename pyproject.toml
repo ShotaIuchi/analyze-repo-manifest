@@ -29,6 +29,7 @@ analyze-repo-manifest = "analyze_repo_manifest.cli:main"
 default = "analyze_repo_manifest.display.display_default:display"
 json = "analyze_repo_manifest.display.display_json:display"
 yaml = "analyze_repo_manifest.display.display_yaml:display"
+xml = "analyze_repo_manifest.display.display_xml:display"
 
 # pip install -e .
 [tool.setuptools]

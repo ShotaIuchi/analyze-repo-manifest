@@ -33,3 +33,14 @@ def parse_args():
     parser.add_argument("--project", help="Filter by project attribute (for submanifest)")
 
     return parser.parse_args()
+
+
+def parse_set_fields(set_args):
+    """Parse --set KEY=VALUE args into a dict"""
+    updates = {}
+    for s in set_args or []:
+        if "=" not in s:
+            raise ValueError(f"Invalid --set format: {s}")
+        key, value = s.split("=", 1)
+        updates[key.replace("-", "_")] = value
+    return updates

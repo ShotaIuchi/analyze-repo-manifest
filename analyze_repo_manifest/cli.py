@@ -1,17 +1,17 @@
 import sys
-from analyze_repo_manifest.args import parse_args
-from analyze_repo_manifest.display import get_display_function
-from analyze_repo_manifest.core import parse_manifest, search_manifest, update_elements, save_manifest
-
-
-def parse_set_fields(set_args):
-    updates = {}
-    for s in set_args or []:
-        if "=" not in s:
-            raise ValueError(f"Invalid --set format: {s}")
-        key, value = s.split("=", 1)
-        updates[key.replace("-", "_")] = value
-    return updates
+from analyze_repo_manifest.args import (
+    parse_args,
+    parse_set_fields,
+)
+from analyze_repo_manifest.display import (
+    get_display_function,
+)
+from analyze_repo_manifest.manifest import (
+    parse_manifest,
+    search_manifest,
+    update_elements,
+    save_manifest,
+)
 
 
 def main():

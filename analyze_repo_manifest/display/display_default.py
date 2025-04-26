@@ -5,17 +5,14 @@ def get_display_name():
 def display(items, fields=None):
     if not items:
         return
-
-    if not fields:
-        fields = ",".join(items[0].__dataclass_fields__.keys())
-
-    field_list = fields.split(",")
-
-    for item in items:
-        values = []
+    for elem in items:
+        if fields:
+            field_list = fields.split(",")
+        else:
+            field_list = elem.attrib.keys()
+        parts = []
         for f in field_list:
-            value = getattr(item, f, None)
+            value = elem.get(f)
             if value is not None:
-                values.append(f"{f}={value}")
-        if values:
-            print(", ".join(values))
+                parts.append(f"{f}={value}")
+        print(", ".join(parts))
